@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Straiker Email Signature Generator</title>
+  <style>
+    :root {
+      --pink: #D4006A;
+      --pink-hover: #B5005A;
+      --pink-light: #FFF0F7;
+      --orange: #FF6820;
+      --gray-50: #F9FAFB;
+      --gray-100: #F3F4F6;
+      --gray-200: #E5E7EB;
+      --gray-400: #9CA3AF;
+      --gray-500: #6B7280;
+      --gray-700: #374151;
+      --gray-800: #1F2937;
+      --white: #FFFFFF;
+      --linkedin: #0A66C2;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      background: #EEF0F4;
+      color: var(--gray-800);
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 0 28px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-logo-svg {
+      height: 38px;
+    }
+
+    .header-divider {
+      width: 1px;
+      height: 28px;
+      background: var(--gray-200);
+    }
+
+    .header-text h1 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--gray-800);
+      line-height: 1.2;
+    }
+
+    .header-text p {
+      font-size: 11px;
+      color: var(--gray-400);
+    }
+
+    /* ── Layout ── */
+    .main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 24px;
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    /* ── Panel ── */
+    .panel {
+      background: var(--white);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel-header {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--gray-100);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .panel-icon {
+      width: 30px;
+      height: 30px;
+      background: var(--pink-light);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .panel-header h2 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray-800);
+    }
+
+    .panel-body {
+      padding: 20px;
+    }
+
+    /* ── Form ── */
+    .section-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gray-400);
+      margin-bottom: 12px;
+    }
+
+    .form-section {
+      margin-bottom: 20px;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--gray-100);
+      margin: 20px 0;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    .form-group:last-child { margin-bottom: 0; }
+
+    label {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--gray-500);
+      margin-bottom: 4px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="url"] {
+      width: 100%;
+      padding: 8px 11px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 8px;
+      font-size: 13px;
+      color: var(--gray-800);
+      background: var(--white);
+      transition: border-color 0.15s, box-shadow 0.15s;
+      font-family: inherit;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--pink);
+      box-shadow: 0 0 0 3px rgba(212,0,106,0.1);
+    }
+
+    input::placeholder { color: var(--gray-400); }
+
+    /* ── Toggle ── */
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      margin-bottom: 10px;
+    }
+
+    .toggle-info .toggle-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-800);
+    }
+
+    .toggle-info .toggle-desc {
+      font-size: 11px;
+      color: var(--gray-400);
+      margin-top: 1px;
+    }
+
+    .toggle {
+      position: relative;
+      width: 42px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .toggle input { opacity: 0; width: 0; height: 0; }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background: var(--gray-200);
+      border-radius: 24px;
+      transition: background 0.2s;
+    }
+
+    .toggle-slider::before {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      left: 3px;
+      top: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.2s;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .toggle input:checked + .toggle-slider { background: var(--pink); }
+    .toggle input:checked + .toggle-slider::before { transform: translateX(18px); }
+
+    /* ── Event section ── */
+    .event-section { display: none; }
+    .event-section.visible { display: block; }
+
+    .upload-tabs {
+      display: flex;
+      background: var(--gray-100);
+      border-radius: 8px;
+      padding: 3px;
+      margin-bottom: 12px;
+    }
+
+    .upload-tab {
+      flex: 1;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 500;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background: transparent;
+      color: var(--gray-500);
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+
+    .upload-tab.active {
+      background: var(--white);
+      color: var(--pink);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .upload-area {
+      border: 2px dashed var(--gray-200);
+      border-radius: 10px;
+      padding: 20px 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.15s;
+      background: var(--gray-50);
+    }
+
+    .upload-area:hover,
+    .upload-area.drag-over {
+      border-color: var(--pink);
+      background: var(--pink-light);
+    }
+
+    .upload-area .upload-icon { font-size: 26px; margin-bottom: 6px; }
+    .upload-area strong { font-size: 13px; color: var(--gray-700); }
+    .upload-area p { font-size: 11px; color: var(--gray-400); margin-top: 2px; }
+
+    .event-graphic-preview {
+      margin-top: 10px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--gray-200);
+      display: none;
+    }
+
+    .event-graphic-preview.visible { display: block; }
+
+    .event-graphic-preview img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .remove-btn {
+      display: none;
+      width: 100%;
+      margin-top: 8px;
+      padding: 6px 12px;
+      background: none;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 8px;
+      font-size: 12px;
+      color: var(--gray-500);
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+
+    .remove-btn:hover { border-color: #EF4444; color: #EF4444; }
+    .remove-btn.visible { display: block; }
+
+    /* ── Logo note ── */
+    .note-box {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 11px;
+      color: var(--gray-500);
+      line-height: 1.5;
+    }
+
+    .note-box strong { color: var(--gray-700); }
+
+    /* ── Preview panel ── */
+    .preview-wrap {
+      background: var(--gray-100);
+      border-radius: 10px;
+      padding: 24px;
+      margin-bottom: 18px;
+    }
+
+    .preview-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gray-400);
+      margin-bottom: 14px;
+    }
+
+    .preview-inner {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      border: 1px solid var(--gray-200);
+      overflow-x: auto;
+    }
+
+    /* ── Copy button ── */
+    .copy-btn {
+      width: 100%;
+      padding: 13px;
+      background: var(--pink);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      font-family: inherit;
+    }
+
+    .copy-btn:hover {
+      background: var(--pink-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(212,0,106,0.35);
+    }
+
+    .copy-btn:active { transform: translateY(0); box-shadow: none; }
+
+    .copy-btn.copied { background: #10B981; }
+
+    /* ── Instructions ── */
+    .instructions {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .instructions-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray-700);
+      margin-bottom: 12px;
+    }
+
+    .inst-tabs {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .inst-tab {
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1.5px solid var(--gray-200);
+      background: white;
+      color: var(--gray-500);
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+
+    .inst-tab.active {
+      background: var(--pink);
+      border-color: var(--pink);
+      color: white;
+    }
+
+    .inst-content { display: none; }
+    .inst-content.active { display: block; }
+
+    .inst-step {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-size: 12px;
+      color: var(--gray-500);
+      line-height: 1.4;
+    }
+
+    .inst-step:last-child { margin-bottom: 0; }
+
+    .step-num {
+      min-width: 18px;
+      height: 18px;
+      background: var(--pink);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9.5px;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+
+    .inst-step strong { color: var(--gray-700); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <!-- Straiker S logo (official) -->
+    <svg class="header-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 227 327" fill="none">
+      <path d="M179.17 20.7941L145.446 128.71L108.429 117.144L122.841 71.0041L53.8722 127.432L219.619 171.635L226.897 205.385L78.5129 326.79L47.7269 305.996L81.4505 198.08L118.468 209.647L104.049 255.779L173.018 199.352L7.27825 155.155L0 121.405L148.384 0L179.17 20.7941Z" fill="url(#logoGrad_header)"/>
+      <defs>
+        <linearGradient id="logoGrad_header" x1="171.991" y1="60.7026" x2="47.2507" y2="267.78" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#FFB84D"/>
+          <stop offset="1" stop-color="#DB2777"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <div class="header-divider"></div>
+    <div class="header-text">
+      <h1>Email Signature Generator</h1>
+      <p>Straiker · The Agentic Security Company</p>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- ── Form Panel ── -->
+  <div class="panel">
+    <div class="panel-header">
+      <div class="panel-icon">✏️</div>
+      <h2>Your Info</h2>
+    </div>
+    <div class="panel-body">
+
+      <!-- Personal info -->
+      <div class="form-section">
+        <div class="section-label">Personal</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" id="firstName" value="Tessa" oninput="updatePreview()" />
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" id="lastName" value="Cohen" oninput="updatePreview()" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Job Title</label>
+          <input type="text" id="jobTitle" value="Field &amp; Partner Marketing Manager" oninput="updatePreview()" />
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" id="phone" value="970-324-9052" oninput="updatePreview()" />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="email" value="tessa@straiker.ai" oninput="updatePreview()" />
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Social -->
+      <div class="form-section">
+        <div class="section-label">Social Links</div>
+        <div class="form-group">
+          <label>LinkedIn URL</label>
+          <input type="url" id="linkedinUrl" placeholder="https://linkedin.com/company/straiker" value="https://linkedin.com/company/straiker" oninput="updatePreview()" />
+        </div>
+        <div class="form-group">
+          <label>X (Twitter) URL</label>
+          <input type="url" id="twitterUrl" placeholder="https://x.com/straiker_ai" value="https://x.com/straiker_ai" oninput="updatePreview()" />
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Event graphic -->
+      <div class="form-section">
+        <div class="section-label">Event Graphic</div>
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <div class="toggle-title">Add Event Banner</div>
+            <div class="toggle-desc">Promote your booth number or event</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="eventToggle" onchange="onEventToggle()" />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="event-section" id="eventSection">
+          <div class="upload-tabs">
+            <button class="upload-tab active" onclick="setUploadTab('file', this)">Upload Image</button>
+            <button class="upload-tab" onclick="setUploadTab('url', this)">Image URL</button>
+          </div>
+
+          <!-- File upload tab -->
+          <div id="fileTab">
+            <div class="upload-area"
+              id="uploadArea"
+              onclick="document.getElementById('fileInput').click()"
+              ondragover="onDragOver(event)"
+              ondragleave="onDragLeave(event)"
+              ondrop="onDrop(event)">
+              <div class="upload-icon">🖼️</div>
+              <strong>Click to upload or drag & drop</strong>
+              <p>PNG, JPG, GIF — max 2 MB</p>
+            </div>
+            <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="onFileSelect(event)" />
+          </div>
+
+          <!-- URL tab -->
+          <div id="urlTab" style="display:none">
+            <div class="form-group">
+              <label>Image URL</label>
+              <input type="url" id="eventUrl" placeholder="https://your-site.com/event-banner.png" oninput="onUrlInput()" />
+            </div>
+          </div>
+
+          <div class="event-graphic-preview" id="graphicPreview">
+            <img id="graphicPreviewImg" src="" alt="Event graphic preview" />
+          </div>
+          <button class="remove-btn" id="removeBtn" onclick="removeGraphic()">✕ Remove graphic</button>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Logo settings -->
+      <div class="form-section">
+        <div class="section-label">Logo Settings</div>
+        <div class="form-group">
+          <label>Hosted Logo URL <span style="font-weight:400;color:var(--gray-400)">(optional override)</span></label>
+          <input type="url" id="logoUrl" placeholder="https://straiker.ai/logo.png" oninput="updatePreview()" />
+        </div>
+        <div class="note-box">
+          <strong>Leave blank</strong> to embed the logo directly in the signature — works great in Gmail and Apple Mail. For <strong>Outlook desktop</strong> compatibility, paste the URL to a hosted PNG/JPG of the logo above.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Preview Panel ── -->
+  <div class="panel">
+    <div class="panel-header">
+      <div class="panel-icon">👁️</div>
+      <h2>Preview & Export</h2>
+    </div>
+    <div class="panel-body">
+
+      <div class="preview-wrap">
+        <div class="preview-label">Live Preview</div>
+        <div class="preview-inner" id="previewInner"></div>
+      </div>
+
+      <button class="copy-btn" id="copyBtn" onclick="copySignature()">
+        📋 Copy Signature to Clipboard
+      </button>
+
+      <!-- Fallback copy panel: shown if programmatic copy fails -->
+      <div id="copyPanel" style="display:none; margin-bottom:18px; border:2px solid var(--pink); border-radius:10px; overflow:hidden;">
+        <div style="background:var(--pink-light); padding:12px 16px; border-bottom:1px solid #f9c; display:flex; align-items:center; justify-content:space-between;">
+          <div style="font-size:12px; color:var(--pink); font-weight:600;">
+            Almost there! Select all below, then press <kbd style="background:white;border:1px solid #ddd;border-radius:4px;padding:1px 5px;font-size:11px;">Ctrl+C</kbd> (Windows) or <kbd style="background:white;border:1px solid #ddd;border-radius:4px;padding:1px 5px;font-size:11px;">⌘C</kbd> (Mac)
+          </div>
+          <button onclick="selectCopyPanel()" style="background:var(--pink);color:white;border:none;border-radius:6px;padding:5px 10px;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;">Select All</button>
+        </div>
+        <div id="copyPanelContent" style="background:white;padding:20px;cursor:text;"></div>
+      </div>
+
+      <div class="instructions">
+        <div class="instructions-title">How to install in your email client</div>
+
+        <div class="inst-tabs">
+          <button class="inst-tab active" onclick="setInstTab('gmail', this)">Gmail</button>
+          <button class="inst-tab" onclick="setInstTab('outlook', this)">Outlook</button>
+          <button class="inst-tab" onclick="setInstTab('apple', this)">Apple Mail</button>
+        </div>
+
+        <div class="inst-content active" id="inst-gmail">
+          <div class="inst-step"><div class="step-num">1</div><div>Click <strong>Copy Signature</strong> above</div></div>
+          <div class="inst-step"><div class="step-num">2</div><div>In Gmail, go to <strong>Settings → See all settings → General → Signature</strong></div></div>
+          <div class="inst-step"><div class="step-num">3</div><div>Click <strong>Create new</strong> or select an existing signature</div></div>
+          <div class="inst-step"><div class="step-num">4</div><div>Click in the signature box and <strong>Paste</strong> (⌘V / Ctrl+V)</div></div>
+          <div class="inst-step"><div class="step-num">5</div><div>Scroll down and click <strong>Save Changes</strong></div></div>
+        </div>
+
+        <div class="inst-content" id="inst-outlook">
+          <div class="inst-step"><div class="step-num">1</div><div>Click <strong>Copy Signature</strong> above</div></div>
+          <div class="inst-step"><div class="step-num">2</div><div>Go to <strong>File → Options → Mail → Signatures…</strong></div></div>
+          <div class="inst-step"><div class="step-num">3</div><div>Click <strong>New</strong> and name your signature</div></div>
+          <div class="inst-step"><div class="step-num">4</div><div>Click in the editor and <strong>Paste</strong> (Ctrl+V)</div></div>
+          <div class="inst-step"><div class="step-num">5</div><div>Click <strong>OK</strong> to save</div></div>
+        </div>
+
+        <div class="inst-content" id="inst-apple">
+          <div class="inst-step"><div class="step-num">1</div><div>Click <strong>Copy Signature</strong> above</div></div>
+          <div class="inst-step"><div class="step-num">2</div><div>In Mail, go to <strong>Mail → Settings → Signatures</strong></div></div>
+          <div class="inst-step"><div class="step-num">3</div><div>Click <strong>+</strong> to add a new signature</div></div>
+          <div class="inst-step"><div class="step-num">4</div><div>Click in the signature area and <strong>Paste</strong> (⌘V)</div></div>
+          <div class="inst-step"><div class="step-num">5</div><div>Close the window — changes save automatically</div></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// ── State ──
+let eventGraphicSrc = null;
+let currentUploadTab = 'file';
+let logoPngDataUrl = null; // PNG version of logo for email embedding
+
+// SVG source for logo conversion
+const LOGO_SVG_STRING = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 227 327" fill="none">
+  <path d="M179.17 20.7941L145.446 128.71L108.429 117.144L122.841 71.0041L53.8722 127.432L219.619 171.635L226.897 205.385L78.5129 326.79L47.7269 305.996L81.4505 198.08L118.468 209.647L104.049 255.779L173.018 199.352L7.27825 155.155L0 121.405L148.384 0L179.17 20.7941Z" fill="url(#lc)"/>
+  <defs>
+    <linearGradient id="lc" x1="171.991" y1="60.7026" x2="47.2507" y2="267.78" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFB84D"/>
+      <stop offset="1" stop-color="#DB2777"/>
+    </linearGradient>
+  </defs>
+</svg>`;
+
+// Convert the SVG logo to a PNG data URL at startup (PNG is accepted by all email clients)
+function buildLogoPng() {
+  return new Promise((resolve) => {
+    const img = new Image();
+    const blob = new Blob([LOGO_SVG_STRING], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    img.onload = () => {
+      const W = 180, H = Math.round(180 * 327 / 227); // display size × 2 for sharpness
+      const canvas = document.createElement('canvas');
+      canvas.width = W * 2; canvas.height = H * 2;
+      const ctx = canvas.getContext('2d');
+      ctx.scale(2, 2);
+      ctx.drawImage(img, 0, 0, W, H);
+      URL.revokeObjectURL(url);
+      resolve(canvas.toDataURL('image/png'));
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); resolve(null); };
+    img.src = url;
+  });
+}
+
+// Official Straiker S logo (inline SVG for preview — no external request needed)
+const LOGO_SVG_PREVIEW = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 227 327" width="80" fill="none">
+  <path d="M179.17 20.7941L145.446 128.71L108.429 117.144L122.841 71.0041L53.8722 127.432L219.619 171.635L226.897 205.385L78.5129 326.79L47.7269 305.996L81.4505 198.08L118.468 209.647L104.049 255.779L173.018 199.352L7.27825 155.155L0 121.405L148.384 0L179.17 20.7941Z" fill="url(#sg_preview)"/>
+  <defs>
+    <linearGradient id="sg_preview" x1="171.991" y1="60.7026" x2="47.2507" y2="267.78" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFB84D"/>
+      <stop offset="1" stop-color="#DB2777"/>
+    </linearGradient>
+  </defs>
+</svg>`;
+
+// ── Generate signature HTML (email-safe, table-based) ──
+function generateSignatureHTML({ forCopy }) {
+  const firstName = esc(v('firstName') || 'First');
+  const lastName  = esc(v('lastName')  || 'Last');
+  const jobTitle  = esc(v('jobTitle')  || 'Your Title');
+  const phone     = esc(v('phone')     || '');
+  const email     = esc(v('email')     || '');
+  const linkedin  = esc(v('linkedinUrl') || 'https://linkedin.com/company/straiker');
+  const twitter   = esc(v('twitterUrl')  || 'https://x.com/straiker_ai');
+  const logoUrl   = esc(v('logoUrl')  || 'https://straiker.ai/logo.png');
+
+  // For copy: prefer hosted URL → PNG data URL → nothing
+  const hostedUrl = v('logoUrl').trim();
+  const emailLogoSrc = hostedUrl.startsWith('http') ? hostedUrl : (logoPngDataUrl || '');
+  const logoImg = forCopy
+    ? (emailLogoSrc ? `<img src="${emailLogoSrc}" alt="Straiker" width="90" style="display:block;margin:0 auto 10px;" />` : '')
+    : LOGO_SVG_PREVIEW.replace('<svg ', '<svg style="display:block;margin:0 auto 10px;" ');
+
+  const phoneRow = phone
+    ? `<tr><td style="padding-bottom:5px;font-size:13px;font-family:Arial,Helvetica,sans-serif;color:#1F2937;white-space:nowrap;">📞&nbsp;<a href="tel:${phone.replace(/\D/g,'')}" style="text-decoration:none;color:#1F2937;">${phone}</a></td></tr>`
+    : '';
+
+  const emailRow = email
+    ? `<tr><td style="padding-bottom:5px;font-size:13px;font-family:Arial,Helvetica,sans-serif;white-space:nowrap;">📧&nbsp;<a href="mailto:${email}" style="text-decoration:none;color:#D4006A;">${email}</a></td></tr>`
+    : '';
+
+  const eventSection = eventGraphicSrc
+    ? `<tr><td style="padding-top:14px;"><img src="${eventGraphicSrc}" alt="Event" style="max-width:320px;height:auto;display:block;" /></td></tr>`
+    : '';
+
+  return `<table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#1F2937;">
+  <tr valign="top">
+
+    <!-- Logo column -->
+    <td style="padding-right:22px;text-align:center;width:145px;">
+      ${logoImg}
+      <div style="color:#D4006A;font-size:11.5px;letter-spacing:3px;font-weight:bold;font-family:Arial,sans-serif;">STRAIKER</div>
+      <div style="color:#9CA3AF;font-size:10.5px;font-style:italic;font-family:Arial,sans-serif;margin-top:3px;">The Agentic Security Company</div>
+    </td>
+
+    <!-- Vertical divider -->
+    <td width="2" bgcolor="#D4006A" style="background-color:#D4006A;">&nbsp;</td>
+
+    <!-- Info column -->
+    <td style="padding-left:22px;">
+      <table cellpadding="0" cellspacing="0" border="0">
+
+        <!-- Name -->
+        <tr><td style="font-size:19px;font-weight:bold;color:#1F2937;padding-bottom:2px;font-family:Arial,sans-serif;white-space:nowrap;">${firstName}&nbsp;${lastName}</td></tr>
+
+        <!-- Title -->
+        <tr><td style="font-size:13px;color:#6B7280;padding-bottom:3px;font-family:Arial,sans-serif;">${jobTitle}</td></tr>
+
+        <!-- Company -->
+        <tr><td style="font-size:13px;font-weight:bold;color:#D4006A;padding-bottom:14px;font-family:Arial,sans-serif;">Straiker</td></tr>
+
+        <!-- Contact -->
+        ${phoneRow}
+        ${emailRow}
+
+        <!-- Website -->
+        <tr><td style="padding-bottom:14px;font-size:13px;font-family:Arial,Helvetica,sans-serif;">🌎&nbsp;<a href="https://straiker.ai" style="text-decoration:none;color:#D4006A;">straiker.ai</a></td></tr>
+
+        <!-- Follow us -->
+        <tr><td style="font-size:12px;color:#1F2937;padding-bottom:8px;font-family:Arial,sans-serif;">Follow us:</td></tr>
+
+        <!-- Social buttons -->
+        <tr><td>
+          <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td style="padding-right:8px;">
+                <a href="${linkedin}" style="text-decoration:none;">
+                  <table cellpadding="0" cellspacing="0" border="0">
+                    <tr><td style="background:#0A66C2;border-radius:7px;padding:8px 15px;color:white;font-size:13px;font-weight:bold;font-family:Arial,sans-serif;line-height:1;">in</td></tr>
+                  </table>
+                </a>
+              </td>
+              <td>
+                <a href="${twitter}" style="text-decoration:none;">
+                  <table cellpadding="0" cellspacing="0" border="0">
+                    <tr><td style="background:#000000;border-radius:7px;padding:8px 14px;color:white;font-size:13px;font-weight:bold;font-family:Arial,sans-serif;line-height:1;">X</td></tr>
+                  </table>
+                </a>
+              </td>
+            </tr>
+          </table>
+        </td></tr>
+
+        <!-- Event graphic -->
+        ${eventSection}
+
+      </table>
+    </td>
+  </tr>
+</table>`;
+}
+
+// ── Helpers ──
+function v(id) { return document.getElementById(id)?.value ?? ''; }
+
+function esc(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── Update live preview ──
+function updatePreview() {
+  document.getElementById('previewInner').innerHTML = generateSignatureHTML({ forCopy: false });
+}
+
+// ── Copy signature ──
+function copySignature() {
+  const html = generateSignatureHTML({ forCopy: true });
+  const btn  = document.getElementById('copyBtn');
+  const panel = document.getElementById('copyPanel');
+  const panelContent = document.getElementById('copyPanelContent');
+
+  // Populate the panel div (must be in DOM so execCommand can use it)
+  panelContent.innerHTML = html;
+
+  // Render panel invisibly so we can select from it synchronously
+  panel.style.visibility = 'hidden';
+  panel.style.display = 'block';
+
+  // ── Step 1: execCommand (synchronous — works in incognito & all browsers) ──
+  selectCopyPanel();
+  let copied = false;
+  try { copied = document.execCommand('copy'); } catch(_) {}
+
+  if (copied) {
+    // Hide panel — programmatic copy worked
+    panel.style.display = 'none';
+    panel.style.visibility = 'visible';
+    btn.textContent = '✓ Copied! Paste into your email client.';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.innerHTML = '📋 Copy Signature to Clipboard';
+      btn.classList.remove('copied');
+    }, 3000);
+    return;
+  }
+
+  // ── Step 2: Modern ClipboardItem API (async, some browsers only) ──
+  if (navigator.clipboard && typeof ClipboardItem !== 'undefined') {
+    const blob = new Blob([html], { type: 'text/html' });
+    navigator.clipboard.write([new ClipboardItem({ 'text/html': blob })])
+      .then(() => {
+        panel.style.display = 'none';
+        panel.style.visibility = 'visible';
+        btn.textContent = '✓ Copied! Paste into your email client.';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = '📋 Copy Signature to Clipboard';
+          btn.classList.remove('copied');
+        }, 3000);
+      })
+      .catch(() => showFallback());
+    return;
+  }
+
+  // ── Step 3: Manual fallback panel ──
+  showFallback();
+
+  function showFallback() {
+    panel.style.visibility = 'visible';
+    btn.textContent = '⬇️ See below — press ⌘C / Ctrl+C';
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    setTimeout(selectCopyPanel, 150);
+  }
+}
+
+// Select all content inside the copy panel
+function selectCopyPanel() {
+  const content = document.getElementById('copyPanelContent');
+  if (!content) return;
+  const range = document.createRange();
+  range.selectNodeContents(content);
+  const sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(range);
+}
+
+// ── Event toggle ──
+function onEventToggle() {
+  const on = document.getElementById('eventToggle').checked;
+  document.getElementById('eventSection').classList.toggle('visible', on);
+  if (!on) { removeGraphic(); }
+}
+
+// ── Upload tabs ──
+function setUploadTab(tab, el) {
+  currentUploadTab = tab;
+  document.querySelectorAll('.upload-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('fileTab').style.display = tab === 'file' ? 'block' : 'none';
+  document.getElementById('urlTab').style.display  = tab === 'url'  ? 'block' : 'none';
+}
+
+// ── File handling ──
+function onFileSelect(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  if (file.size > 2 * 1024 * 1024) { alert('Image must be under 2 MB.'); return; }
+  const reader = new FileReader();
+  reader.onload = ev => setGraphic(ev.target.result);
+  reader.readAsDataURL(file);
+}
+
+function onDragOver(e) {
+  e.preventDefault();
+  document.getElementById('uploadArea').classList.add('drag-over');
+}
+
+function onDragLeave() {
+  document.getElementById('uploadArea').classList.remove('drag-over');
+}
+
+function onDrop(e) {
+  e.preventDefault();
+  document.getElementById('uploadArea').classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (!file || !file.type.startsWith('image/')) return;
+  if (file.size > 2 * 1024 * 1024) { alert('Image must be under 2 MB.'); return; }
+  const reader = new FileReader();
+  reader.onload = ev => setGraphic(ev.target.result);
+  reader.readAsDataURL(file);
+}
+
+function onUrlInput() {
+  const url = document.getElementById('eventUrl').value.trim();
+  if (url) { setGraphic(url); } else { clearGraphicUI(); }
+}
+
+function setGraphic(src) {
+  eventGraphicSrc = src;
+  document.getElementById('graphicPreviewImg').src = src;
+  document.getElementById('graphicPreview').classList.add('visible');
+  document.getElementById('removeBtn').classList.add('visible');
+  updatePreview();
+}
+
+function clearGraphicUI() {
+  eventGraphicSrc = null;
+  document.getElementById('graphicPreview').classList.remove('visible');
+  document.getElementById('removeBtn').classList.remove('visible');
+}
+
+function removeGraphic() {
+  clearGraphicUI();
+  document.getElementById('fileInput').value = '';
+  document.getElementById('eventUrl').value  = '';
+  updatePreview();
+}
+
+// ── Instruction tabs ──
+function setInstTab(tab, el) {
+  document.querySelectorAll('.inst-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.inst-content').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('inst-' + tab).classList.add('active');
+}
+
+// ── Iframe detection ──
+// Clipboard APIs are blocked by browsers in cross-origin iframes (e.g. Google Sites embeds).
+// If we're embedded, show a banner directing the user to open the app in its own tab.
+if (window.self !== window.top) {
+  const banner = document.createElement('div');
+  banner.style.cssText = 'position:sticky;top:0;z-index:100;background:#FEF3C7;border-bottom:3px solid #F59E0B;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;';
+  banner.innerHTML = `
+    <span style="font-size:13px;color:#92400E;font-weight:500;">⚠️ The copy button requires the app to be open in its own browser tab.</span>
+    <a href="${window.location.href}" target="_blank"
+       style="background:#D4006A;color:white;padding:9px 18px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:700;white-space:nowrap;flex-shrink:0;">
+      Open in New Tab →
+    </a>`;
+  document.body.prepend(banner);
+}
+
+// ── Init ──
+// Build the PNG version of the logo, then render the preview
+buildLogoPng().then(dataUrl => {
+  logoPngDataUrl = dataUrl;
+  updatePreview();
+});
+</script>
+
+</body>
+</html>
