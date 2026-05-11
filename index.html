@@ -843,20 +843,9 @@ function copySignature() {
   const panel = document.getElementById('copyPanel');
   const panelContent = document.getElementById('copyPanelContent');
 
-  // Populate the panel div (must be in DOM so execCommand can use it)
   panelContent.innerHTML = html;
 
-  // Render panel invisibly so we can select from it synchronously
-  panel.style.visibility = 'hidden';
-  panel.style.display = 'block';
-
-  // ── Step 1: execCommand (synchronous — works in incognito & all browsers) ──
-  selectCopyPanel();
-  let copied = false;
-  try { copied = document.execCommand('copy'); } catch(_) {}
-
-  if (copied) {
-    // Hide panel — programmatic copy worked
+  function showSuccess() {
     panel.style.display = 'none';
     panel.style.visibility = 'visible';
     btn.textContent = '✓ Copied! Paste into your email client.';
@@ -865,36 +854,41 @@ function copySignature() {
       btn.innerHTML = '📋 Copy Signature to Clipboard';
       btn.classList.remove('copied');
     }, 3000);
-    return;
   }
-
-  // ── Step 2: Modern ClipboardItem API (async, some browsers only) ──
-  if (navigator.clipboard && typeof ClipboardItem !== 'undefined') {
-    const blob = new Blob([html], { type: 'text/html' });
-    navigator.clipboard.write([new ClipboardItem({ 'text/html': blob })])
-      .then(() => {
-        panel.style.display = 'none';
-        panel.style.visibility = 'visible';
-        btn.textContent = '✓ Copied! Paste into your email client.';
-        btn.classList.add('copied');
-        setTimeout(() => {
-          btn.innerHTML = '📋 Copy Signature to Clipboard';
-          btn.classList.remove('copied');
-        }, 3000);
-      })
-      .catch(() => showFallback());
-    return;
-  }
-
-  // ── Step 3: Manual fallback panel ──
-  showFallback();
 
   function showFallback() {
     panel.style.visibility = 'visible';
+    panel.style.display = 'block';
     btn.textContent = '⬇️ See below — press ⌘C / Ctrl+C';
     panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     setTimeout(selectCopyPanel, 150);
   }
+
+  // Primary: modern ClipboardItem API — works on HTTPS in Chrome/Edge/Safari
+  if (navigator.clipboard && typeof ClipboardItem !== 'undefined') {
+    const htmlBlob  = new Blob([html], { type: 'text/html' });
+    const textBlob  = new Blob([`${v('firstName')} ${v('lastName')} | ${v('jobTitle')} | Straiker`], { type: 'text/plain' });
+    navigator.clipboard.write([new ClipboardItem({ 'text/html': htmlBlob, 'text/plain': textBlob })])
+      .then(showSuccess)
+      .catch(() => {
+        // Fallback: execCommand on rendered panel
+        panel.style.visibility = 'hidden';
+        panel.style.display = 'block';
+        selectCopyPanel();
+        let ok = false;
+        try { ok = document.execCommand('copy'); } catch(_) {}
+        if (ok) { showSuccess(); } else { showFallback(); }
+      });
+    return;
+  }
+
+  // Fallback: execCommand
+  panel.style.visibility = 'hidden';
+  panel.style.display = 'block';
+  selectCopyPanel();
+  let ok = false;
+  try { ok = document.execCommand('copy'); } catch(_) {}
+  if (ok) { showSuccess(); } else { showFallback(); }
 }
 
 // Select all content inside the copy panel
