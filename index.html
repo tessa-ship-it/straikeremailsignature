@@ -495,7 +495,7 @@
   <!-- ââ Form Panel ââ -->
   <div class="panel">
     <div class="panel-header">
-      <div class="panel-icon">â</div>
+      <div class="panel-icon"></div>
       <h2>Your Info</h2>
     </div>
     <div class="panel-body">
@@ -574,7 +574,7 @@
               ondrop="onDrop(event)">
               <div class="upload-icon"></div>
               <strong>Click to upload or drag & drop</strong>
-              <p>PNG, JPG, GIF â max 2 MB</p>
+              <p>PNG, JPG, GIF  max 2 MB</p>
             </div>
             <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="onFileSelect(event)" />
           </div>
@@ -604,7 +604,7 @@
           <input type="url" id="logoUrl" placeholder="https://straiker.ai/logo.png" oninput="updatePreview()" />
         </div>
         <div class="note-box">
-          <strong>Leave blank</strong> to embed the logo directly in the signature â works great in Gmail and Apple Mail. For <strong>Outlook desktop</strong> compatibility, paste the URL to a hosted PNG/JPG of the logo above.
+          <strong>Leave blank</strong> to embed the logo directly in the signature  works great in Gmail and Apple Mail. For <strong>Outlook desktop</strong> compatibility, paste the URL to a hosted PNG/JPG of the logo above.
         </div>
       </div>
 
@@ -632,7 +632,7 @@
       <div id="copyPanel" style="display:none; margin-bottom:18px; border:2px solid var(--pink); border-radius:10px; overflow:hidden;">
         <div style="background:var(--pink-light); padding:12px 16px; border-bottom:1px solid #f9c; display:flex; align-items:center; justify-content:space-between;">
           <div style="font-size:12px; color:var(--pink); font-weight:600;">
-            Almost there! Select all below, then press <kbd style="background:white;border:1px solid #ddd;border-radius:4px;padding:1px 5px;font-size:11px;">Ctrl+C</kbd> (Windows) or <kbd style="background:white;border:1px solid #ddd;border-radius:4px;padding:1px 5px;font-size:11px;">âC</kbd> (Mac)
+            Almost there! Select all below, then press <kbd style="background:white;border:1px solid #ddd;border-radius:4px;padding:1px 5px;font-size:11px;">Ctrl+C</kbd> (Windows) or <kbd style="background:white;border:1px solid #ddd;border-radius:4px;padding:1px 5px;font-size:11px;">CmdC</kbd> (Mac)
           </div>
           <button onclick="selectCopyPanel()" style="background:var(--pink);color:white;border:none;border-radius:6px;padding:5px 10px;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;">Select All</button>
         </div>
@@ -650,15 +650,15 @@
 
         <div class="inst-content active" id="inst-gmail">
           <div class="inst-step"><div class="step-num">1</div><div>Click <strong>Copy Signature</strong> above</div></div>
-          <div class="inst-step"><div class="step-num">2</div><div>In Gmail, go to <strong>Settings â See all settings â General â Signature</strong></div></div>
+          <div class="inst-step"><div class="step-num">2</div><div>In Gmail, go to <strong>Settings > See all settings > General > Signature</strong></div></div>
           <div class="inst-step"><div class="step-num">3</div><div>Click <strong>Create new</strong> or select an existing signature</div></div>
-          <div class="inst-step"><div class="step-num">4</div><div>Click in the signature box and <strong>Paste</strong> (âV / Ctrl+V)</div></div>
+          <div class="inst-step"><div class="step-num">4</div><div>Click in the signature box and <strong>Paste</strong> (CmdV / Ctrl+V)</div></div>
           <div class="inst-step"><div class="step-num">5</div><div>Scroll down and click <strong>Save Changes</strong></div></div>
         </div>
 
         <div class="inst-content" id="inst-outlook">
           <div class="inst-step"><div class="step-num">1</div><div>Click <strong>Copy Signature</strong> above</div></div>
-          <div class="inst-step"><div class="step-num">2</div><div>Go to <strong>File â Options â Mail â Signaturesâ¦</strong></div></div>
+          <div class="inst-step"><div class="step-num">2</div><div>Go to <strong>File > Options > Mail > Signaturesâ¦</strong></div></div>
           <div class="inst-step"><div class="step-num">3</div><div>Click <strong>New</strong> and name your signature</div></div>
           <div class="inst-step"><div class="step-num">4</div><div>Click in the editor and <strong>Paste</strong> (Ctrl+V)</div></div>
           <div class="inst-step"><div class="step-num">5</div><div>Click <strong>OK</strong> to save</div></div>
@@ -666,10 +666,10 @@
 
         <div class="inst-content" id="inst-apple">
           <div class="inst-step"><div class="step-num">1</div><div>Click <strong>Copy Signature</strong> above</div></div>
-          <div class="inst-step"><div class="step-num">2</div><div>In Mail, go to <strong>Mail â Settings â Signatures</strong></div></div>
+          <div class="inst-step"><div class="step-num">2</div><div>In Mail, go to <strong>Mail > Settings > Signatures</strong></div></div>
           <div class="inst-step"><div class="step-num">3</div><div>Click <strong>+</strong> to add a new signature</div></div>
-          <div class="inst-step"><div class="step-num">4</div><div>Click in the signature area and <strong>Paste</strong> (âV)</div></div>
-          <div class="inst-step"><div class="step-num">5</div><div>Close the window â changes save automatically</div></div>
+          <div class="inst-step"><div class="step-num">4</div><div>Click in the signature area and <strong>Paste</strong> (CmdV)</div></div>
+          <div class="inst-step"><div class="step-num">5</div><div>Close the window  changes save automatically</div></div>
         </div>
 
       </div>
@@ -716,7 +716,7 @@ function buildLogoPng() {
   });
 }
 
-// Official Straiker S logo (inline SVG for preview â no external request needed)
+// Official Straiker S logo (inline SVG for preview  no external request needed)
 const LOGO_SVG_PREVIEW = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 227 327" width="80" fill="none">
   <path d="M179.17 20.7941L145.446 128.71L108.429 117.144L122.841 71.0041L53.8722 127.432L219.619 171.635L226.897 205.385L78.5129 326.79L47.7269 305.996L81.4505 198.08L118.468 209.647L104.049 255.779L173.018 199.352L7.27825 155.155L0 121.405L148.384 0L179.17 20.7941Z" fill="url(#sg_preview)"/>
   <defs>
@@ -738,7 +738,7 @@ function generateSignatureHTML({ forCopy }) {
   const twitter   = esc(v('twitterUrl')  || 'https://x.com/straiker_ai');
   const logoUrl   = esc(v('logoUrl')  || 'https://straiker.ai/logo.png');
 
-  // For copy: prefer hosted URL â PNG data URL â nothing
+  // For copy: prefer hosted URL > PNG data URL > nothing
   const hostedUrl = v('logoUrl').trim();
   const emailLogoSrc = hostedUrl.startsWith('http') ? hostedUrl : 'https://raw.githubusercontent.com/tessa-ship-it/straikeremailsignature/main/straiker-logo.png';
   const logoImg = forCopy
@@ -859,12 +859,12 @@ function copySignature() {
   function showFallback() {
     panel.style.visibility = 'visible';
     panel.style.display = 'block';
-    btn.textContent = 'â¬ See below â press âC / Ctrl+C';
+    btn.textContent = 'â¬ See below  press CmdC / Ctrl+C';
     panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     setTimeout(selectCopyPanel, 150);
   }
 
-  // Primary: modern ClipboardItem API â works on HTTPS in Chrome/Edge/Safari
+  // Primary: modern ClipboardItem API  works on HTTPS in Chrome/Edge/Safari
   if (navigator.clipboard && typeof ClipboardItem !== 'undefined') {
     const htmlBlob  = new Blob([html], { type: 'text/html' });
     const textBlob  = new Blob([`${v('firstName')} ${v('lastName')} | ${v('jobTitle')} | Straiker`], { type: 'text/plain' });
