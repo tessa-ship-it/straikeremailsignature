@@ -33,7 +33,7 @@
       min-height: 100vh;
     }
 
-    /* ââ Header ââ */
+    /* -- Header -- */
     header {
       background: var(--white);
       border-bottom: 1px solid var(--gray-200);
@@ -76,7 +76,7 @@
       color: var(--gray-400);
     }
 
-    /* ââ Layout ââ */
+    /* -- Layout -- */
     .main {
       max-width: 1200px;
       margin: 0 auto;
@@ -87,7 +87,7 @@
       align-items: start;
     }
 
-    /* ââ Panel ââ */
+    /* -- Panel -- */
     .panel {
       background: var(--white);
       border-radius: 14px;
@@ -125,7 +125,7 @@
       padding: 20px;
     }
 
-    /* ââ Form ââ */
+    /* -- Form -- */
     .section-label {
       font-size: 10.5px;
       font-weight: 700;
@@ -188,7 +188,7 @@
 
     input::placeholder { color: var(--gray-400); }
 
-    /* ââ Toggle ââ */
+    /* -- Toggle -- */
     .toggle-row {
       display: flex;
       align-items: center;
@@ -243,7 +243,7 @@
     .toggle input:checked + .toggle-slider { background: var(--pink); }
     .toggle input:checked + .toggle-slider::before { transform: translateX(18px); }
 
-    /* ââ Event section ââ */
+    /* -- Event section -- */
     .event-section { display: none; }
     .event-section.visible { display: block; }
 
@@ -329,7 +329,7 @@
     .remove-btn:hover { border-color: #EF4444; color: #EF4444; }
     .remove-btn.visible { display: block; }
 
-    /* ââ Logo note ââ */
+    /* -- Logo note -- */
     .note-box {
       background: var(--gray-50);
       border: 1px solid var(--gray-200);
@@ -342,7 +342,7 @@
 
     .note-box strong { color: var(--gray-700); }
 
-    /* ââ Preview panel ââ */
+    /* -- Preview panel -- */
     .preview-wrap {
       background: var(--gray-100);
       border-radius: 10px;
@@ -367,7 +367,7 @@
       overflow-x: auto;
     }
 
-    /* ââ Copy button ââ */
+    /* -- Copy button -- */
     .copy-btn {
       width: 100%;
       padding: 13px;
@@ -397,7 +397,7 @@
 
     .copy-btn.copied { background: #10B981; }
 
-    /* ââ Instructions ââ */
+    /* -- Instructions -- */
     .instructions {
       background: var(--gray-50);
       border: 1px solid var(--gray-200);
@@ -492,10 +492,10 @@
 
 <main class="main">
 
-  <!-- ââ Form Panel ââ -->
+  <!-- -- Form Panel -- -->
   <div class="panel">
     <div class="panel-header">
-      <div class="panel-icon">â</div>
+      <div class="panel-icon">-</div>
       <h2>Your Info</h2>
     </div>
     <div class="panel-body">
@@ -574,7 +574,7 @@
               ondrop="onDrop(event)">
               <div class="upload-icon"></div>
               <strong>Click to upload or drag & drop</strong>
-              <p>PNG, JPG, GIF â max 2 MB</p>
+              <p>PNG, JPG, GIF - max 2 MB</p>
             </div>
             <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="onFileSelect(event)" />
           </div>
@@ -590,7 +590,7 @@
           <div class="event-graphic-preview" id="graphicPreview">
             <img id="graphicPreviewImg" src="" alt="Event graphic preview" />
           </div>
-          <button class="remove-btn" id="removeBtn" onclick="removeGraphic()">â Remove graphic</button>
+          <button class="remove-btn" id="removeBtn" onclick="removeGraphic()">- Remove graphic</button>
         </div>
       </div>
 
@@ -604,14 +604,14 @@
           <input type="url" id="logoUrl" placeholder="https://straiker.ai/logo.png" oninput="updatePreview()" />
         </div>
         <div class="note-box">
-          <strong>Leave blank</strong> to embed the logo directly in the signature â works great in Gmail and Apple Mail. For <strong>Outlook desktop</strong> compatibility, paste the URL to a hosted PNG/JPG of the logo above.
+          <strong>Leave blank</strong> to embed the logo directly in the signature - works great in Gmail and Apple Mail. For <strong>Outlook desktop</strong> compatibility, paste the URL to a hosted PNG/JPG of the logo above.
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- ââ Preview Panel ââ -->
+  <!-- -- Preview Panel -- -->
   <div class="panel">
     <div class="panel-header">
       <div class="panel-icon"></div>
@@ -632,7 +632,7 @@
       <div id="copyPanel" style="display:none; margin-bottom:18px; border:2px solid var(--pink); border-radius:10px; overflow:hidden;">
         <div style="background:var(--pink-light); padding:12px 16px; border-bottom:1px solid #f9c; display:flex; align-items:center; justify-content:space-between;">
           <div style="font-size:12px; color:var(--pink); font-weight:600;">
-            Almost there! Select all below, then press <kbd style="background:white;border:1px solid #ddd;border-radius:4px;padding:1px 5px;font-size:11px;">Ctrl+C</kbd> (Windows) or <kbd style="background:white;border:1px solid #ddd;border-radius:4px;padding:1px 5px;font-size:11px;">âC</kbd> (Mac)
+            Almost there! Select all below, then press <kbd style="background:white;border:1px solid #ddd;border-radius:4px;padding:1px 5px;font-size:11px;">Ctrl+C</kbd> (Windows) or <kbd style="background:white;border:1px solid #ddd;border-radius:4px;padding:1px 5px;font-size:11px;">-C</kbd> (Mac)
           </div>
           <button onclick="selectCopyPanel()" style="background:var(--pink);color:white;border:none;border-radius:6px;padding:5px 10px;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;">Select All</button>
         </div>
@@ -650,15 +650,15 @@
 
         <div class="inst-content active" id="inst-gmail">
           <div class="inst-step"><div class="step-num">1</div><div>Click <strong>Copy Signature</strong> above</div></div>
-          <div class="inst-step"><div class="step-num">2</div><div>In Gmail, go to <strong>Settings â See all settings â General â Signature</strong></div></div>
+          <div class="inst-step"><div class="step-num">2</div><div>In Gmail, go to <strong>Settings - See all settings - General - Signature</strong></div></div>
           <div class="inst-step"><div class="step-num">3</div><div>Click <strong>Create new</strong> or select an existing signature</div></div>
-          <div class="inst-step"><div class="step-num">4</div><div>Click in the signature box and <strong>Paste</strong> (âV / Ctrl+V)</div></div>
+          <div class="inst-step"><div class="step-num">4</div><div>Click in the signature box and <strong>Paste</strong> (-V / Ctrl+V)</div></div>
           <div class="inst-step"><div class="step-num">5</div><div>Scroll down and click <strong>Save Changes</strong></div></div>
         </div>
 
         <div class="inst-content" id="inst-outlook">
           <div class="inst-step"><div class="step-num">1</div><div>Click <strong>Copy Signature</strong> above</div></div>
-          <div class="inst-step"><div class="step-num">2</div><div>Go to <strong>File â Options â Mail â Signaturesâ¦</strong></div></div>
+          <div class="inst-step"><div class="step-num">2</div><div>Go to <strong>File - Options - Mail - Signatures-¦</strong></div></div>
           <div class="inst-step"><div class="step-num">3</div><div>Click <strong>New</strong> and name your signature</div></div>
           <div class="inst-step"><div class="step-num">4</div><div>Click in the editor and <strong>Paste</strong> (Ctrl+V)</div></div>
           <div class="inst-step"><div class="step-num">5</div><div>Click <strong>OK</strong> to save</div></div>
@@ -666,10 +666,10 @@
 
         <div class="inst-content" id="inst-apple">
           <div class="inst-step"><div class="step-num">1</div><div>Click <strong>Copy Signature</strong> above</div></div>
-          <div class="inst-step"><div class="step-num">2</div><div>In Mail, go to <strong>Mail â Settings â Signatures</strong></div></div>
+          <div class="inst-step"><div class="step-num">2</div><div>In Mail, go to <strong>Mail - Settings - Signatures</strong></div></div>
           <div class="inst-step"><div class="step-num">3</div><div>Click <strong>+</strong> to add a new signature</div></div>
-          <div class="inst-step"><div class="step-num">4</div><div>Click in the signature area and <strong>Paste</strong> (âV)</div></div>
-          <div class="inst-step"><div class="step-num">5</div><div>Close the window â changes save automatically</div></div>
+          <div class="inst-step"><div class="step-num">4</div><div>Click in the signature area and <strong>Paste</strong> (-V)</div></div>
+          <div class="inst-step"><div class="step-num">5</div><div>Close the window - changes save automatically</div></div>
         </div>
 
       </div>
@@ -679,7 +679,7 @@
 </main>
 
 <script>
-// ââ State ââ
+// -- State --
 let eventGraphicSrc = null;
 let currentUploadTab = 'file';
 let logoPngDataUrl = null; // PNG version of logo for email embedding
@@ -716,7 +716,7 @@ function buildLogoPng() {
   });
 }
 
-// Official Straiker S logo (inline SVG for preview â no external request needed)
+// Official Straiker S logo (inline SVG for preview - no external request needed)
 const LOGO_SVG_PREVIEW = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 227 327" width="80" fill="none">
   <path d="M179.17 20.7941L145.446 128.71L108.429 117.144L122.841 71.0041L53.8722 127.432L219.619 171.635L226.897 205.385L78.5129 326.79L47.7269 305.996L81.4505 198.08L118.468 209.647L104.049 255.779L173.018 199.352L7.27825 155.155L0 121.405L148.384 0L179.17 20.7941Z" fill="url(#sg_preview)"/>
   <defs>
@@ -727,7 +727,7 @@ const LOGO_SVG_PREVIEW = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2
   </defs>
 </svg>`;
 
-// ââ Generate signature HTML (email-safe, table-based) ââ
+// -- Generate signature HTML (email-safe, table-based) --
 function generateSignatureHTML({ forCopy }) {
   const firstName = esc(v('firstName') || 'First');
   const lastName  = esc(v('lastName')  || 'Last');
@@ -738,7 +738,7 @@ function generateSignatureHTML({ forCopy }) {
   const twitter   = esc(v('twitterUrl')  || 'https://x.com/straiker_ai');
   const logoUrl   = esc(v('logoUrl')  || 'https://straiker.ai/logo.png');
 
-  // For copy: prefer hosted URL â PNG data URL â nothing
+  // For copy: prefer hosted URL - PNG data URL - nothing
   const hostedUrl = v('logoUrl').trim();
   const emailLogoSrc = hostedUrl.startsWith('http') ? hostedUrl : 'https://raw.githubusercontent.com/tessa-ship-it/straikeremailsignature/main/straiker-logo.png';
   const logoImg = forCopy
@@ -824,19 +824,19 @@ function generateSignatureHTML({ forCopy }) {
 </table>`;
 }
 
-// ââ Helpers ââ
+// -- Helpers --
 function v(id) { return document.getElementById(id)?.value ?? ''; }
 
 function esc(str) {
   return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-// ââ Update live preview ââ
+// -- Update live preview --
 function updatePreview() {
   document.getElementById('previewInner').innerHTML = generateSignatureHTML({ forCopy: false });
 }
 
-// ââ Copy signature ââ
+// -- Copy signature --
 function copySignature() {
   const html = generateSignatureHTML({ forCopy: true });
   const btn  = document.getElementById('copyBtn');
@@ -848,7 +848,7 @@ function copySignature() {
   function showSuccess() {
     panel.style.display = 'none';
     panel.style.visibility = 'visible';
-    btn.textContent = 'â Copied! Paste into your email client.';
+    btn.textContent = '- Copied! Paste into your email client.';
     btn.classList.add('copied');
     setTimeout(() => {
       btn.innerHTML = '📋 Copy Signature to Clipboard';
@@ -859,12 +859,12 @@ function copySignature() {
   function showFallback() {
     panel.style.visibility = 'visible';
     panel.style.display = 'block';
-    btn.textContent = 'â¬ See below â press âC / Ctrl+C';
+    btn.textContent = '-¬ See below - press -C / Ctrl+C';
     panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     setTimeout(selectCopyPanel, 150);
   }
 
-  // Primary: modern ClipboardItem API â works on HTTPS in Chrome/Edge/Safari
+  // Primary: modern ClipboardItem API - works on HTTPS in Chrome/Edge/Safari
   if (navigator.clipboard && typeof ClipboardItem !== 'undefined') {
     const htmlBlob  = new Blob([html], { type: 'text/html' });
     const textBlob  = new Blob([`${v('firstName')} ${v('lastName')} | ${v('jobTitle')} | Straiker`], { type: 'text/plain' });
@@ -902,14 +902,14 @@ function selectCopyPanel() {
   sel.addRange(range);
 }
 
-// ââ Event toggle ââ
+// -- Event toggle --
 function onEventToggle() {
   const on = document.getElementById('eventToggle').checked;
   document.getElementById('eventSection').classList.toggle('visible', on);
   if (!on) { removeGraphic(); }
 }
 
-// ââ Upload tabs ââ
+// -- Upload tabs --
 function setUploadTab(tab, el) {
   currentUploadTab = tab;
   document.querySelectorAll('.upload-tab').forEach(t => t.classList.remove('active'));
@@ -918,7 +918,7 @@ function setUploadTab(tab, el) {
   document.getElementById('urlTab').style.display  = tab === 'url'  ? 'block' : 'none';
 }
 
-// ââ File handling ââ
+// -- File handling --
 function onFileSelect(e) {
   const file = e.target.files[0];
   if (!file) return;
@@ -974,7 +974,7 @@ function removeGraphic() {
   updatePreview();
 }
 
-// ââ Instruction tabs ââ
+// -- Instruction tabs --
 function setInstTab(tab, el) {
   document.querySelectorAll('.inst-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.inst-content').forEach(c => c.classList.remove('active'));
@@ -982,22 +982,22 @@ function setInstTab(tab, el) {
   document.getElementById('inst-' + tab).classList.add('active');
 }
 
-// ââ Iframe detection ââ
+// -- Iframe detection --
 // Clipboard APIs are blocked by browsers in cross-origin iframes (e.g. Google Sites embeds).
 // If we're embedded, show a banner directing the user to open the app in its own tab.
 if (window.self !== window.top) {
   const banner = document.createElement('div');
   banner.style.cssText = 'position:sticky;top:0;z-index:100;background:#FEF3C7;border-bottom:3px solid #F59E0B;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;';
   banner.innerHTML = `
-    <span style="font-size:13px;color:#92400E;font-weight:500;">â  The copy button requires the app to be open in its own browser tab.</span>
+    <span style="font-size:13px;color:#92400E;font-weight:500;">-  The copy button requires the app to be open in its own browser tab.</span>
     <a href="${window.location.href}" target="_blank"
        style="background:#D4006A;color:white;padding:9px 18px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:700;white-space:nowrap;flex-shrink:0;">
-      Open in New Tab â
+      Open in New Tab -
     </a>`;
   document.body.prepend(banner);
 }
 
-// ââ Init ââ
+// -- Init --
 // Build the PNG version of the logo, then render the preview
 buildLogoPng().then(dataUrl => {
   logoPngDataUrl = dataUrl;
