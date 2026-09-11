@@ -572,7 +572,7 @@
               ondragover="onDragOver(event)"
               ondragleave="onDragLeave(event)"
               ondrop="onDrop(event)">
-              <div class="upload-icon">🖼ï¸</div>
+              <div class="upload-icon">ï¸</div>
               <strong>Click to upload or drag & drop</strong>
               <p>PNG, JPG, GIF â max 2 MB</p>
             </div>
@@ -746,11 +746,11 @@ function generateSignatureHTML({ forCopy }) {
     : LOGO_SVG_PREVIEW.replace('<svg ', '<svg style="display:block;margin:0 auto 10px;" ');
 
   const phoneRow = phone
-    ? `<tr><td style="padding-bottom:5px;font-size:13px;font-family:Arial,Helvetica,sans-serif;color:#1F2937;white-space:nowrap;">ð&nbsp;<a href="tel:${phone.replace(/\D/g,'')}" style="text-decoration:none;color:#1F2937;">${phone}</a></td></tr>`
+    ? `<tr><td style="padding-bottom:5px;font-size:13px;font-family:Arial,Helvetica,sans-serif;color:#1F2937;white-space:nowrap;">T:&nbsp;<a href="tel:${phone.replace(/\D/g,'')}" style="text-decoration:none;color:#1F2937;">${phone}</a></td></tr>`
     : '';
 
   const emailRow = email
-    ? `<tr><td style="padding-bottom:5px;font-size:13px;font-family:Arial,Helvetica,sans-serif;white-space:nowrap;">ð§&nbsp;<a href="mailto:${email}" style="text-decoration:none;color:#D4006A;">${email}</a></td></tr>`
+    ? `<tr><td style="padding-bottom:5px;font-size:13px;font-family:Arial,Helvetica,sans-serif;white-space:nowrap;">E:&nbsp;<a href="mailto:${email}" style="text-decoration:none;color:#D4006A;">${email}</a></td></tr>`
     : '';
 
   const eventSection = eventGraphicSrc
