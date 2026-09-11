@@ -746,11 +746,11 @@ function generateSignatureHTML({ forCopy }) {
     : LOGO_SVG_PREVIEW.replace('<svg ', '<svg style="display:block;margin:0 auto 10px;" ');
 
   const phoneRow = phone
-    ? `<tr><td style="padding-bottom:5px;font-size:13px;font-family:Arial,Helvetica,sans-serif;color:#1F2937;white-space:nowrap;"><a href="tel:${phone.replace(/\D/g,'')}" style="text-decoration:none;color:#D4006A;">${phone}</a></td></tr>`
+    ? `<tr><td style="padding-bottom:5px;font-size:13px;font-family:Arial,Helvetica,sans-serif;color:#1F2937;white-space:nowrap;">T:&nbsp;<a href="tel:${phone.replace(/\D/g,'')}" style="text-decoration:none;color:#D4006A;">${phone}</a></td></tr>`
     : '';
 
   const emailRow = email
-    ? `<tr><td style="padding-bottom:5px;font-size:13px;font-family:Arial,Helvetica,sans-serif;white-space:nowrap;"><a href="mailto:${email}" style="text-decoration:none;color:#D4006A;">${email}</a></td></tr>`
+    ? `<tr><td style="padding-bottom:5px;font-size:13px;font-family:Arial,Helvetica,sans-serif;white-space:nowrap;">E:&nbsp;<a href="mailto:${email}" style="text-decoration:none;color:#D4006A;">${email}</a></td></tr>`
     : '';
 
   const eventSection = eventGraphicSrc
@@ -788,7 +788,7 @@ function generateSignatureHTML({ forCopy }) {
         ${emailRow}
 
         <!-- Website -->
-        <tr><td style="padding-bottom:14px;font-size:13px;font-family:Arial,Helvetica,sans-serif;"><a href="https://straiker.ai" style="text-decoration:none;color:#D4006A;">straiker.ai</a></td></tr>
+        <tr><td style="padding-bottom:14px;font-size:13px;font-family:Arial,Helvetica,sans-serif;">W:&nbsp;<a href="https://straiker.ai" style="text-decoration:none;color:#D4006A;">straiker.ai</a></td></tr>
 
         <!-- Follow us -->
         <tr><td style="font-size:12px;color:#1F2937;padding-bottom:8px;font-family:Arial,sans-serif;">Follow us:</td></tr>
@@ -992,7 +992,7 @@ if (window.self !== window.top) {
     <span style="font-size:13px;color:#92400E;font-weight:500;">â  The copy button requires the app to be open in its own browser tab.</span>
     <a href="${window.location.href}" target="_blank"
        style="background:#D4006A;color:white;padding:9px 18px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:700;white-space:nowrap;flex-shrink:0;">
-      Open in New Tab â
+      Open in New Tab
     </a>`;
   document.body.prepend(banner);
 }
